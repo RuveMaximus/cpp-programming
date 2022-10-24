@@ -1,6 +1,8 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <ostream>
+using namespace std;
 const int DEFAULT_CAPACITY = 5;
 
 class VectorException {};
@@ -13,17 +15,21 @@ private:
 
 public:
 	explicit Vector(int startCapacity=DEFAULT_CAPACITY);
+
 	Vector(const Vector& v);
+	~Vector();
 
 	void indexIsValid();
 
 	void insert(int elem, int index); 
+	void insert(int elem);
 	void remove(int index);
 	void increaseCapacity(int newCapacity); 
 
-	int operator[] (int index);
+	int& operator[] (int index);
 	Vector& operator = (const Vector& v);
-	~Vector();
+
+	friend ostream& operator << (ostream& out, const Vector& v); 
 };
 
 #endif 

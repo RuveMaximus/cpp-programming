@@ -1,5 +1,7 @@
 #include "vector.h"
+#include <ostream>
 
+using namespace std;
 
 Vector::Vector(int startCapacity)
 {
@@ -23,12 +25,17 @@ void Vector::insert(int elem, int index)
 {
     if (index < 0 || index > size) throw VectorException(); 
     if (size == capacity) increaseCapacity(size+1);
-    for (int i = size-1; i >= index; j--)
+    for (int i = size-1; i >= index; i--)
     {
-        ptr[j+1] = ptr[j];
+        ptr[i+1] = ptr[i];
     }
     size++;
     ptr[index] = elem;
+}
+
+void Vector::insert(int elem)
+{
+    insert(elem, size);
 }
 
 void Vector::remove(int index)
@@ -69,12 +76,22 @@ Vector& Vector::operator = (const Vector& v)
     return *this;
 }
 
-int Vector::operator [](int index)
+int& Vector::operator [](int index)
 {
-    if (index >= size || index < 0)
-        throw VectorException(); 
-    else
-        return ptr[index]; 
+    if (index >= size || index < 0) throw VectorException(); 
+    else return ptr[index]; 
+}
+
+ostream& operator << (ostream& out, const Vector& v)
+{
+    out << "Total vector size: " << v.size << endl;
+    out << "Elements: [";
+    for (int i = 0; i < v.size; i++)
+    {
+        out << v.ptr[i] << ", ";
+    }
+    out << ']' << endl;
+    return out;
 }
 
 Vector::~Vector()
