@@ -19,12 +19,13 @@ public:
 	Vector(const Vector& v);
 	~Vector();
 
-	void indexIsValid();
+	int getSize();
+	int getCapacity();
 
 	void insert(int elem, int index); 
-	void insert(int elem);
-	void remove(int index);
-	void increaseCapacity(int newCapacity); 
+	void push_back(const int elem);
+	void remove(const int index);
+	void increaseCapacity(const int newCapacity); 
 
 	int& operator[] (int index);
 	Vector& operator = (const Vector& v);

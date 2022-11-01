@@ -21,6 +21,9 @@ Vector::Vector(const Vector& v)
     }
 }
 
+int Vector::getSize() { return size; }
+int Vector::getCapacity() { return capacity; }
+
 void Vector::insert(int elem, int index)
 {
     if (index < 0 || index > size) throw VectorException(); 
@@ -33,12 +36,13 @@ void Vector::insert(int elem, int index)
     ptr[index] = elem;
 }
 
-void Vector::insert(int elem)
+void Vector::push_back(const int elem)
 {
-    insert(elem, size);
+    if (size == capacity) increaseCapacity(size+1);
+    ptr[size++] = elem;
 }
 
-void Vector::remove(int index)
+void Vector::remove(const int index)
 {
     if (index < 0 || index >= size) throw VectorException();
     for (int i = index; i < size-1; i++) 
@@ -48,7 +52,7 @@ void Vector::remove(int index)
     
 }
 
-void Vector::increaseCapacity(int newCapacity) {
+void Vector::increaseCapacity(const int newCapacity) {
     capacity = newCapacity < capacity*2 ? capacity*2 : newCapacity; 
     int *newPtr = new int[capacity]; 
     for (int i = 0; i < size; i++) 
@@ -68,8 +72,7 @@ Vector& Vector::operator = (const Vector& v)
         ptr = new int[v.capacity];
         capacity = v.capacity; 
     }
-    size = v.size;
-    for (int i=0; i < size; i++) 
+    for (int i=0; i < v.size; i++) 
     {
         ptr[i] = v.ptr[i];
     }
@@ -79,7 +82,7 @@ Vector& Vector::operator = (const Vector& v)
 int& Vector::operator [](int index)
 {
     if (index >= size || index < 0) throw VectorException(); 
-    else return ptr[index]; 
+    return ptr[index]; 
 }
 
 ostream& operator << (ostream& out, const Vector& v)

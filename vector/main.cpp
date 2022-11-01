@@ -3,15 +3,21 @@
 
 using namespace std;
 
+
+void input(int& value, const char* introduce)
+{
+    cout << introduce; cin >> value;
+}
+
+
 int main() 
 {
-	Vector v(4);
-    for (int i = 0; i < 4; i++) v.insert(i+1); 
-    cout << v << endl;
-    for (int i = 0; i < 8; i++) v.insert(10+i, i); 
-    cout << v << endl;
-    for (int i = 1; i < 8; i+=2) v[i] = 20+i;
-    cout << v << endl;
-    for (int i = 6; i >= 0; i-=3) v.remove(i);
-    cout << v << endl;
+    int n, k; 
+    input(n, "Enter the number of persons: ");
+    input(k, "Enter the interval: ");
+
+    Vector v(n);
+    for (int i = 0; i < n; ++i) v.push_back(i+1);
+    for (int i = 0; v.getSize() > 1; i += k - 1, i %= v.getSize(), v.remove(i));
+    cout << "Answer: " << v[0] << endl;
 }
