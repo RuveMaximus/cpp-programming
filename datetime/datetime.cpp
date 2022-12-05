@@ -23,9 +23,13 @@ DateTime::DateTime(const string date_str)
         if (symbolIsDivider(date_str[i])) currentFormat++;
         else date[currentFormat] += date_str[i];
     }
-    short year = stoi(date[2]);
-    short month = stoi(date[1]);
     short day = stoi(date[0]);
+    
+    short month = 1;
+    if (date[1].length() > 2) month = hMounth.at(date[1]);
+    else month = stoi(date[1]);
+
+    short year = stoi(date[2]) + 2000*(date[2].length() < 3);
 
     days = 365 * (year - 1970) + day; // Добавляем дни относительно прошедших дней
     days += (year - 1970) / 4 + (year % 4 == 0 && month > 2); // Добавляем недостающие дни от високосных годов
