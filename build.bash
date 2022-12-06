@@ -1,5 +1,5 @@
 FILE_NAME="build"
-TARGET_DIR="vector"
+TARGET_DIR=$1
 
 cd $TARGET_DIR
 

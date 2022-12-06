@@ -27,18 +27,31 @@ const std::map <std::string, int> hMounth = {
 class DateTime
 {
 private:
-    unsigned long long days;
+    unsigned long long seconds;
     bool symbolIsDivider(const char); 
 
 public:
+    DateTime();
     DateTime(const std::string);
     DateTime(const unsigned long long);
     
-    void print();
     int getMaxDay(const int, const int); 
+    unsigned int leapYearCount() const; // число високосных годов с 1970
+
+    int getYear() const;
+    int getMonth() const;
+    int getDate() const;
+    int getHour() const;
+    int getMinute() const;
+    int getSecond() const;
+
+    int getDays() const;
     std::string getDayOfWeek();
 
     unsigned long long operator- (const DateTime&);
+    friend void print(const DateTime&, const std::string);
 };
+
+void getEasterDate(const int);
 
 #endif

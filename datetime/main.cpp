@@ -5,17 +5,31 @@ using namespace std;
 
 int main()
 {
-    DateTime a("05.12.2022"); 
-    DateTime b("05.01.2023");
+    DateTime a("05.13.2022T22:15:20"); 
 
-    a.print();
-    b.print();
+    print(a, "h:m:s d-M-y");
 
-    cout << b-a << endl;
+    cout << "Days since 01.01.1970: " << a.getDays() << endl;
+    cout << "Day of Week: " << a.getDayOfWeek() << endl;
+    cout << "Number of leap year since 1970: " << a.leapYearCount() << endl;
 
-    DateTime c("6 Nov 14");
+    cout << "-----------------" << endl;
 
-    c.print();
+    DateTime b("6-12-22T15:20:59");
+    print(b, "h:m d.M");
+
+    cout << "Days since 01.01.1970: " << b.getDays() << endl;
+    cout << "Day of Week: " << b.getDayOfWeek() << endl;
+    cout << "Number of leap year since 1970: " << b.leapYearCount() << endl;
+
+    cout << "-----------------" << endl;
+
+    cout << "Delta time: " << b-a << endl;
+
+    cout << "-----------------" << endl;
+
+    cout << "Easter: ";
+    getEasterDate(2006);
 
     return 0;
 }
