@@ -12,6 +12,6 @@ int main(void)
     list.insertAfter(ptr, 15);
     list.insertAfter(ptr->getNext(), 12);
     list.insertFirst(7);
-    cout << "step 1" << list << endl;
+    cout << "step 1 " << list << endl;
     return 0;   
 }
