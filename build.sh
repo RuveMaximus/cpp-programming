@@ -3,11 +3,10 @@ TARGET_DIR=$1
 
 cd $TARGET_DIR
 
-g++ $(ls | grep cpp) -o $FILE_NAME
+g++ $(ls | grep cpp) -o $FILE_NAME && ./$FILE_NAME
 
 if ls | grep -q $FILE_NAME;
 then 
-    ./$FILE_NAME
     rm $FILE_NAME
 fi
 
